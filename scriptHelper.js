@@ -12,7 +12,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                     <li>Distance from Earth: ${distance}</li>
                     <li>Number of Moons: ${moons}</li>
                 </ol>
-                <img src="${imageUrl}" alt="${name}" title="${name}"> `;
+                <img src="${imageUrl}">`;
     
 }
 
@@ -34,23 +34,23 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let pilotStatus = `Pilot ${pilot} is ready for launch`;
     let copilotStatus = `Co-pilot ${copilot} is ready for launch`;
     let fuelStatus = `Fuel level ${isFuelLevelEnough ? "high enough" : "too low"} for launch`;
-    let cargoStatus = `Cargo mass ${isCargoMassLowEnough ? "low enough" : "too high"} for launch`;
+    let cargoStatus = `Cargo mass ${isCargoMassLowEnough ? "low enough" : "too heavy"} for launch`;
 
     let launchStatus = document.getElementById("launchStatus");
     let faultyItems = document.getElementById("faultyItems");
+
+    document.getElementById("pilotStatus").innerHTML = pilotStatus;
+    document.getElementById("copilotStatus").innerHTML = copilotStatus;
+    document.getElementById("fuelStatus").innerHTML = fuelStatus;
+    document.getElementById("cargoStatus").innerHTML = cargoStatus;
+    faultyItems.style.visibility = "visible";
+
     if (isFuelLevelEnough && isCargoMassLowEnough) {
-        launchStatus.innerHTML = "Shuttle is ready for launch";
-        launchStatus.style.color = "green";
-        faultyItems.style.visibility = "hidden";
+        launchStatus.innerHTML = "Shuttle is Ready for Launch";
+        launchStatus.style.color = "rgb(65, 159, 106)";
     } else {
-        launchStatus.innerHTML = "Shuttle not ready for launch";
-        launchStatus.style.color = "red";
-        
-        document.getElementById("pilotStatus").innerHTML = pilotStatus;
-        document.getElementById("copilotStatus").innerHTML = copilotStatus;
-        document.getElementById("fuelStatus").innerHTML = fuelStatus;
-        document.getElementById("cargoStatus").innerHTML = cargoStatus;
-        faultyItems.style.visibility = "visible";
+        launchStatus.innerHTML = "Shuttle Not Ready for Launch";
+        launchStatus.style.color = "rgb(199, 37, 78)";
     }
    
 }
@@ -61,7 +61,7 @@ async function myFetch() {
     planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
         return response.json();
     });
-    
+
     return planetsReturned;
 }
 

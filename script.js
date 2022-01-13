@@ -20,6 +20,7 @@ window.addEventListener("load", function() {
             alert(alertMsg);
             event.preventDefault();
         } else {
+            event.preventDefault();
             formSubmission(document, "", pilotName, copilotName, fuelLevel, cargoMass);
         }
     })
