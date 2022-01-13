@@ -2,6 +2,9 @@
 
 window.addEventListener("load", function() {
 
+    let list = document.getElementById("faultyItems");
+    list.style.visibility = "hidden";
+
     document.querySelector("form").addEventListener("submit", (event) => {
 
         let pilotName = document.querySelector("input[name=pilotName]").value;
@@ -15,13 +18,12 @@ window.addEventListener("load", function() {
         } else if (validateInput(fuelLevel) !== "Is a Number" || validateInput(cargoMass) !== "Is a Number") {
             alertMsg = "Make sure to enter valid information for each field!";
         }
-        
+
         if (alertMsg !== "") {
             alert(alertMsg);
             event.preventDefault();
         } else {
-            event.preventDefault();
-            formSubmission(document, "", pilotName, copilotName, fuelLevel, cargoMass);
+            formSubmission(document, list, pilotName, copilotName, fuelLevel, cargoMass);
         }
     })
 
